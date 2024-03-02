@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+        <Version>1.0.0</Version>
+        <Description>
+            Прототип общих справочников. Слой bll
+        </Description>
+        <AssemblyName>Prototype.ClassifierPrototypeService.Bll</AssemblyName>
+        <RootNamespace>Prototype.ClassifierPrototypeService.Bll</RootNamespace>
+    </PropertyGroup>
+    
+</Project>

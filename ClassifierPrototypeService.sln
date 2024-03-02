@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassifierPrototypeService"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassifierPrototypeService.Infrastructure", "ClassifierPrototypeService.Infrastructure\ClassifierPrototypeService.Infrastructure.csproj", "{6928656C-1916-48E6-8BB5-B6AED06BF988}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassifierPrototypeService.Application", "ClassifierPrototypeService.Application\ClassifierPrototypeService.Application.csproj", "{966304C7-D2C7-4B18-B6D4-15104E5B3377}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassifierPrototypeService.Bll", "ClassifierPrototypeService.Bll\ClassifierPrototypeService.Bll.csproj", "{B62B18F0-A8DB-4733-B85A-1E9AE9428D20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{6928656C-1916-48E6-8BB5-B6AED06BF988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6928656C-1916-48E6-8BB5-B6AED06BF988}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6928656C-1916-48E6-8BB5-B6AED06BF988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{966304C7-D2C7-4B18-B6D4-15104E5B3377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966304C7-D2C7-4B18-B6D4-15104E5B3377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966304C7-D2C7-4B18-B6D4-15104E5B3377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{966304C7-D2C7-4B18-B6D4-15104E5B3377}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B62B18F0-A8DB-4733-B85A-1E9AE9428D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B62B18F0-A8DB-4733-B85A-1E9AE9428D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B62B18F0-A8DB-4733-B85A-1E9AE9428D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B62B18F0-A8DB-4733-B85A-1E9AE9428D20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
