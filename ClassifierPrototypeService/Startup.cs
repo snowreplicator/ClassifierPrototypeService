@@ -25,7 +25,7 @@ public class Startup
         
         services.AddControllers();
 
-        services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); });
+        services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Classifier prototype", Version = "v1" }); });
         services.AddClassifierPrototypeSwagger();
     }
 
@@ -36,7 +36,7 @@ public class Startup
             app.UseDeveloperExceptionPage();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1"));
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Classifier prototype rest api"));
         }
 
         app.UseRouting();
