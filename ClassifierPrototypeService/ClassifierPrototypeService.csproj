@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+        <Version>1.0.0</Version>
+        <Description>
+            Прототип общих справочников
+        </Description>
+        <AssemblyName>Prototype.ClassifierPrototypeService</AssemblyName>
+        <RootNamespace>Prototype.ClassifierPrototypeService</RootNamespace>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>$(NoWarn);1591</NoWarn>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\ClassifierPrototypeService.Infrastructure\ClassifierPrototypeService.Infrastructure.csproj"/>
+    </ItemGroup>
+
+</Project>
