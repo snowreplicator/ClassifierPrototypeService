@@ -24,10 +24,8 @@ public class ItemController : ControllerBase
     /// Get all items
     /// </summary>
     [HttpGet("api/items")]
-    public IActionResult GetItems()
-    {
-        return Ok(_items);
-    }
+    public IActionResult GetItems() 
+        => Ok(_items);
 
     /// <summary>
     /// Get item by id
@@ -35,7 +33,7 @@ public class ItemController : ControllerBase
     [HttpGet("api/items/{id}")]
     public IActionResult GetItem(int id)
     {
-        var item = _items.Find(i => i.Id == id);
+        Item item = _items.Find(i => i.Id == id);
         if (item == null)
         {
             return NotFound();

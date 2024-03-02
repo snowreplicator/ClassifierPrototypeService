@@ -19,8 +19,6 @@ public class ServiceOptionsController : ControllerBase
     /// Retrieve all service options.
     /// </summary>
     [HttpGet]
-    public IActionResult GetServiceOptions()
-    {
-        return Ok(_serviceOptions);
-    }
+    public IActionResult GetServiceOptions() 
+        => Ok(_serviceOptions);
 }
