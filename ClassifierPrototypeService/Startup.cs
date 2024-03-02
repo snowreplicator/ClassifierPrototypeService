@@ -23,10 +23,12 @@ public class Startup
         services.Configure<ServiceOptions>(Configuration);
         ServiceOptions serviceOptions = Configuration.Get<ServiceOptions>();
         
-        services.AddControllers();
+        services.AddControllers().AddNewtonsoftJson(JsonConfiguration.ConfigureJsonSerializer);
 
         services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "Classifier prototype", Version = "v1" }); });
         services.AddClassifierPrototypeSwagger();
+        
+        services.AddInfrastructure(Configuration);
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
