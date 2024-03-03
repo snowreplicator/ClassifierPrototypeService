@@ -1,36 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Prototype.ClassifierPrototypeService.Bll.Models;
-using Prototype.ClassifierPrototypeService.Infrastructure.DBContext;
+using Prototype.ClassifierPrototypeService.Application.ApplicationServices.Interfaces.Queries;
+using Prototype.ClassifierPrototypeService.Application.RequestModels;
+using Prototype.ClassifierPrototypeService.Application.ViewModels.Movie;
 
 namespace Prototype.ClassifierPrototypeService.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-public class MoviesController : ControllerBase
+public class MoviesController : BaseController
 {
-    private readonly ApplicationDbContext _applicationDbContext;
-
-    public MoviesController(ApplicationDbContext applicationDbContext)
-    {
-        _applicationDbContext = applicationDbContext;
-    }
 
     /// <summary>
     /// get all movies
     /// </summary>
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<Movie>>> GetMoviesAsync()
+    [HttpGet("GetMovies")]
+    [Description("Get all movies")]
+    public async Task<ActionResult<IEnumerable<MovieViewModel>>> GetMoviesAsync()
     {
-        if (_applicationDbContext.Movies == null)
-        {
-            return NotFound();
-        }
-
-        return await _applicationDbContext.Movies.ToListAsync();
+        IEnumerable<MovieViewModel> result = await GetApplicationService<IGetMoviesApplicationService>().HandleAsync(new EmptyRequest());
+        return new ActionResult<IEnumerable<MovieViewModel>>(result);
     }
+        
 }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Prototype.ClassifierPrototypeService.Application.Interfaces.QuerySources;
 using Prototype.ClassifierPrototypeService.Infrastructure.DBContext;
+using Prototype.ClassifierPrototypeService.Infrastructure.QuerySources;
 
 namespace Prototype.ClassifierPrototypeService.Infrastructure;
 
@@ -9,6 +11,7 @@ public static class Inject
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         => services
+            .AddQuerySources()
             .AddRepositories(configuration);
 
     private static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
@@ -29,5 +32,12 @@ public static class Inject
         });
         
         return services;
+    }
+
+    private static IServiceCollection AddQuerySources(this IServiceCollection services)
+    {
+        return services
+                .AddScoped<IMovieQuerySource, MovieQuerySource>();
+
     }
 }

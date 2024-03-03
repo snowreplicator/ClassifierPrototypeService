@@ -6,6 +6,9 @@ public class ServiceOptions
 {
     [Required(ErrorMessage = "DB: Необходимо указать подключение к БД и схему")]
     public DB DB { get; set; }
+    
+    [Required(ErrorMessage = "NativeLocale: Необходимо указать нативную локаль")]
+    public string NativeLocale { get; set; }
 }
 
 public record DB

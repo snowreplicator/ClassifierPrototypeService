@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Prototype.ClassifierPrototypeService.Application;
 using Prototype.ClassifierPrototypeService.Configuration;
 using Prototype.ClassifierPrototypeService.Infrastructure;
 
@@ -29,6 +30,7 @@ public class Startup
         services.AddClassifierPrototypeSwagger();
         
         services.AddInfrastructure(Configuration);
+        services.AddApplication();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
