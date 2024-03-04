@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Prototype.ClassifierPrototypeService.Application.ApplicationServices.Interfaces.Commands;
 using Prototype.ClassifierPrototypeService.Application.ApplicationServices.Interfaces.Queries;
 using Prototype.ClassifierPrototypeService.Application.RequestModels;
 using Prototype.ClassifierPrototypeService.Application.RequestModels.Commands;
@@ -30,7 +31,7 @@ public class MoviesController : BaseController
     [Description("Add new movie")]
     public async Task<ActionResult<int>> AddMovieAsync(AddMovieRequest request)
     {
-        int result = 0;
+        int result = await GetApplicationService<IAddMovieApplicationService>().HandleAsync(request);
         return new ActionResult<int>(result);
     }
         

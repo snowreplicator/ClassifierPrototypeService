@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
-using Prototype.ClassifierPrototypeService.Infrastructure;
 
 namespace Prototype.ClassifierPrototypeService.Controllers;
 
@@ -9,22 +8,23 @@ namespace Prototype.ClassifierPrototypeService.Controllers;
 [ApiController]
 public abstract class BaseController : ControllerBase
 {
-    protected TApplicationService GetApplicationService<TApplicationService>() where TApplicationService : class 
-        => HttpContext.RequestServices.GetRequiredService<TApplicationService>();
-
-    protected bool IsNativeLocale(string locale)
+    protected TApplicationService GetApplicationService<TApplicationService>() where TApplicationService : class
     {
-        string native = GetNativeLocale();
-        return locale == native;
+        TApplicationService applicationService = HttpContext.RequestServices.GetRequiredService<TApplicationService>();
+
+        var property = applicationService.GetType().GetProperty("UserGuid");
+        if (property is not null && property.PropertyType == typeof(Guid))
+        {
+            property.SetValue(applicationService, GetUserId());
+        }
+
+        return applicationService;
     }
 
-    private string GetNativeLocale()
+    protected Guid? GetUserId()
     {
-        string value = HttpContext.RequestServices
-            .GetRequiredService<IConfiguration>()
-            .Get<ServiceOptions>()
-            .NativeLocale;
-
-        return value;
+        var userId = User.FindFirst("provider_user_id");
+        return userId != null ? new Guid(userId.Value) : null;
     }
+
 }

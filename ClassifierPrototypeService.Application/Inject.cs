@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Prototype.ClassifierPrototypeService.Application.ApplicationServices.Commands;
+using Prototype.ClassifierPrototypeService.Application.ApplicationServices.Interfaces.Commands;
 using Prototype.ClassifierPrototypeService.Application.ApplicationServices.Interfaces.Queries;
 using Prototype.ClassifierPrototypeService.Application.ApplicationServices.Queries;
 
@@ -8,7 +10,17 @@ public static class Inject
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
-        return services
-            .AddScoped<IGetMoviesApplicationService, GetMoviesApplicationService>();
+        services
+            .AddApplicationServices();
+
+        return services;
+    }
+
+    private static IServiceCollection AddApplicationServices(this IServiceCollection services)
+    {
+        services
+            .AddScoped<IGetMoviesApplicationService, GetMoviesApplicationService>()
+            .AddScoped<IAddMovieApplicationService, AddMovieApplicationService>();
+        return services;
     }
 }
