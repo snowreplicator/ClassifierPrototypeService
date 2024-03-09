@@ -1,10 +1,12 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Prototype.ClassifierPrototypeService.Middleware;
 
 public class ServiceException : Exception
 {
-    public string ErrorCode { get; private set; } = "Unknown";
+    private string ErrorCode { get; set; } = "Unknown";
+    private new Exception InnerException { get; set; }
 
     public ServiceException()
     {
@@ -19,6 +21,20 @@ public class ServiceException : Exception
     public ServiceException(string message, string errorCode, Exception innerException)
         : base(message, innerException)
     {
-        this.ErrorCode = errorCode;
+        ErrorCode = errorCode;
+        InnerException = innerException;
     }
+
+    public override string ToString() 
+        => JsonConvert.SerializeObject(
+            new
+            {
+                IsError = true,
+                Code = ErrorCode, 
+                Message = Message,
+                ExceptionType = InnerException.GetType(),
+                Source = InnerException.Source,
+                InnerException = InnerException,
+                StackTrace = StackTrace
+            });
 }
