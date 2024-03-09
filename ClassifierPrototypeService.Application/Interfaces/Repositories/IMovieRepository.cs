@@ -7,5 +7,4 @@ public interface IMovieRepository
 {
     Task<Movie> this[int entityId] { get; }
     Task<Movie> AddAsync(Movie movie);
-    Task<Movie> UpdateAsync(Movie movie);
 }

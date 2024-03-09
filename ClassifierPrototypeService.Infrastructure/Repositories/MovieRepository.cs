@@ -29,6 +29,4 @@ public class MovieRepository : BaseRepository, IMovieRepository
         await RequestContext.ApplicationDbContext.SaveChangesAsync(); 
         return addedMovie.Entity;
     }
-
-    public Task<Movie> UpdateAsync(Movie movie) => throw new System.NotImplementedException();
 }
