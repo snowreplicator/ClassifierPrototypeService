@@ -25,11 +25,11 @@ public static class Inject
         {
             ServiceOptions serviceOptions = configuration.Get<ServiceOptions>();
 
-            string connectionString = serviceOptions.DB.ConnectionString;
+            string connectionString = serviceOptions.Db.ConnectionString;
             connectionString = connectionString.TrimEnd(';');
 
             _ = o.UseNpgsql(connectionString)
-                    .UseSchema(serviceOptions.DB.Schema)
+                    .UseSchema(serviceOptions.Db.Schema)
 #if DEBUG
                     .EnableSensitiveDataLogging()
 #endif
