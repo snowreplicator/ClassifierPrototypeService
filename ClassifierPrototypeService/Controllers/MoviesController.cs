@@ -80,5 +80,16 @@ public class MoviesController : BaseController
         MovieViewModel result = await GetApplicationService<IUpdateMovieApplicationService>().HandleAsync(request);
         return new ActionResult<MovieViewModel>(result);
     }
+    
+    /// <summary>
+    /// delete movie 
+    /// </summary>
+    [HttpDelete("DeleteMovie/{id}")]
+    [Description("delete existing movie")]
+    public async Task<ActionResult<string>> DeleteMovieAsync(int id)
+    {
+        await GetApplicationService<IDeleteMovieApplicationService>().HandleAsync(new DeleteMovieRequest(id));
+        return new ActionResult<string>("ok");
+    }
         
 }

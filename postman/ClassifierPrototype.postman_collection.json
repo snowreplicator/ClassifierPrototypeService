@@ -1,0 +1,202 @@
+{
+	"info": {
+		"_postman_id": "15dde3c0-9a99-4546-a096-6aa93e72bfbe",
+		"name": "ClassifierPrototype",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13173038"
+	},
+	"item": [
+		{
+			"name": "GetMovies",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5204/api/Movies/GetMovies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5204",
+					"path": [
+						"api",
+						"Movies",
+						"GetMovies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMovieQueryParam",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5204/api/Movies/GetMovieQueryParam?id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5204",
+					"path": [
+						"api",
+						"Movies",
+						"GetMovieQueryParam"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetMoviePathParam",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5204/api/Movies/GetMoviePathParam/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5204",
+					"path": [
+						"api",
+						"Movies",
+						"GetMoviePathParam",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddMovie",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"locale\": \"ru-RU\",\r\n  \"title\": \"Title 322222\",\r\n  \"genre\": \"Genre 3\",\r\n  \"releaseDate\": \"2024-03-23T11:33:33.573\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5204/api/Movies/AddMovie",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5204",
+					"path": [
+						"api",
+						"Movies",
+						"AddMovie"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateMovieIdInObject",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \"locale\": \"ru-RU\",\r\n  \"id\": 4,\r\n  \"title\": \"title 4\",\r\n  \"genre\": \"genre 4\",\r\n  \"releaseDate\": \"2024-04-04T11:44:28.317Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5204/api/Movies/UpdateMovieIdInObject",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5204",
+					"path": [
+						"api",
+						"Movies",
+						"UpdateMovieIdInObject"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateMovieIdInPath",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \"locale\": \"ru-RU\",\r\n  \"id\": 4,\r\n  \"title\": \"title 4\",\r\n  \"genre\": \"genre 4\",\r\n  \"releaseDate\": \"2024-04-04T11:44:28.317Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5204/api/Movies/UpdateMovieIdInPath/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5204",
+					"path": [
+						"api",
+						"Movies",
+						"UpdateMovieIdInPath",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteMovie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\r\n{\r\n  \"locale\": \"ru-RU\",\r\n  \"id\": 4,\r\n  \"title\": \"title 4\",\r\n  \"genre\": \"genre 4\",\r\n  \"releaseDate\": \"2024-04-04T11:44:28.317Z\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5204/api/Movies/DeleteMovie/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5204",
+					"path": [
+						"api",
+						"Movies",
+						"DeleteMovie",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

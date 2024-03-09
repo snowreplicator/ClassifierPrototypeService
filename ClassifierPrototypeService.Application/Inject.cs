@@ -22,7 +22,8 @@ public static class Inject
             .AddScoped<IGetMoviesApplicationService, GetMoviesApplicationService>()
             .AddScoped<IGetMovieApplicationService, GetMovieApplicationService>()
             .AddScoped<IAddMovieApplicationService, AddMovieApplicationService>()
-            .AddScoped<IUpdateMovieApplicationService, UpdateMovieApplicationService>();
+            .AddScoped<IUpdateMovieApplicationService, UpdateMovieApplicationService>()
+            .AddScoped<IDeleteMovieApplicationService, DeleteMovieApplicationService>();
         return services;
     }
 }

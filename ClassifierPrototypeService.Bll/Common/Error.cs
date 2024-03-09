@@ -19,6 +19,11 @@ public static class Error
     /// </summary>
     public const string O102MovieCouldNotBeUpdated = "ClassifierPrototypeService_Errors.O102";
     
+    /// <summary>
+    /// Запись не может быть удалена
+    /// </summary>
+    public const string O103MovieCouldNotBeDeleted = "ClassifierPrototypeService_Errors.O103";
+    
     #endregion
     
     
