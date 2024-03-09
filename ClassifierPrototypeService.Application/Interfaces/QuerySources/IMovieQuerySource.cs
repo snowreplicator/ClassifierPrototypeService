@@ -8,4 +8,6 @@ namespace Prototype.ClassifierPrototypeService.Application.Interfaces.QuerySourc
 public interface IMovieQuerySource
 {
     Task<IEnumerable<MovieViewModel>> GetMoviesAsync(CancellationToken cancellationToken);
+    Task<MovieViewModel> FindMovieAsync(int id, CancellationToken cancellationToken);
+    Task<MovieViewModel> GetMovieAsync(int id, CancellationToken cancellationToken);
 }

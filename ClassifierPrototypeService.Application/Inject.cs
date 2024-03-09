@@ -20,6 +20,7 @@ public static class Inject
     {
         services
             .AddScoped<IGetMoviesApplicationService, GetMoviesApplicationService>()
+            .AddScoped<IGetMovieApplicationService, GetMovieApplicationService>()
             .AddScoped<IAddMovieApplicationService, AddMovieApplicationService>();
         return services;
     }
