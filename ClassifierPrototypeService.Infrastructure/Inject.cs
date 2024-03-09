@@ -3,9 +3,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Prototype.ClassifierPrototypeService.Application.Common;
 using Prototype.ClassifierPrototypeService.Application.Interfaces.QuerySources;
+using Prototype.ClassifierPrototypeService.Application.Interfaces.Repositories;
 using Prototype.ClassifierPrototypeService.Infrastructure.common;
 using Prototype.ClassifierPrototypeService.Infrastructure.DBContext;
 using Prototype.ClassifierPrototypeService.Infrastructure.QuerySources;
+using Prototype.ClassifierPrototypeService.Infrastructure.Repositories;
 
 namespace Prototype.ClassifierPrototypeService.Infrastructure;
 
@@ -33,6 +35,8 @@ public static class Inject
 #endif
                 ;
         });
+        
+        services.AddScoped<IMovieRepository, MovieRepository>();
 
         return services;
     }

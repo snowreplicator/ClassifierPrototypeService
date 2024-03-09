@@ -2,10 +2,11 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Prototype.ClassifierPrototypeService.Application.Helpers;
 
 namespace Prototype.ClassifierPrototypeService.Application.Common;
 
-public abstract class BaseApplicationService<TRequest, TResponse> : IApplicationService<TRequest, TResponse>
+public abstract class BaseApplicationService<TRequest, TResponse> : WrappingToBaseException, IApplicationService<TRequest, TResponse>
     where TRequest : BaseRequest
 {
     private readonly ILogger _logger;
@@ -13,7 +14,7 @@ public abstract class BaseApplicationService<TRequest, TResponse> : IApplication
 
     public Guid UserGuid { get; set; }
 
-    protected BaseApplicationService(ILogger logger, IRequestContext requestContext)
+    protected BaseApplicationService(ILogger logger, IRequestContext requestContext) : base(logger)
     {
         _logger = logger;
         _requestContext = requestContext;
@@ -40,7 +41,7 @@ public abstract class BaseApplicationService<TRequest, TResponse> : IApplication
 
             await _requestContext.CancelTransactionAsync();
 
-            throw;
+            throw WrapException(exception);
         }
         finally
         {

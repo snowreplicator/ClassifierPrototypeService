@@ -29,10 +29,10 @@ public class MoviesController : BaseController
     /// </summary>
     [HttpPost("AddMovie")]
     [Description("Add new movie")]
-    public async Task<ActionResult<int>> AddMovieAsync(AddMovieRequest request)
+    public async Task<ActionResult<MovieViewModel>> AddMovieAsync(AddMovieRequest request)
     {
-        int result = await GetApplicationService<IAddMovieApplicationService>().HandleAsync(request);
-        return new ActionResult<int>(result);
+        MovieViewModel result = await GetApplicationService<IAddMovieApplicationService>().HandleAsync(request);
+        return new ActionResult<MovieViewModel>(result);
     }
         
 }

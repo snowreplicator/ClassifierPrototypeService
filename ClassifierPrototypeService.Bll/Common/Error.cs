@@ -1,11 +1,22 @@
 ﻿namespace Prototype.ClassifierPrototypeService.Bll.Common;
 
-/// <summary>
-/// Error codes constants
-///     S - SYS - системные ошибки
-/// </summary>
 public static class Error
 {
+    #region O - OBJ - объекты (ошибки CRUD операций)
+    
+    /// <summary>
+    /// Не найдена запись 
+    /// </summary>
+    public const string O100MovieNotFound = "ClassifierPrototypeService_Errors.O100";
+    
+    /// <summary>
+    /// Запись не может быть создана
+    /// </summary>
+    public const string O101MovieCouldNotBeCreated = "ClassifierPrototypeService_Errors.O100";
+    
+    #endregion
+    
+    
     #region S - SYS - системные ошибки
 
     /// <summary>
@@ -17,6 +28,11 @@ public static class Error
     /// Ошибка операции
     /// </summary>
     public const string S101DoubleTransaction = "ClassifierPrototypeService_Errors.S101";
+    
+    /// <summary>
+    /// Неверные параметры настроек сервиса
+    /// </summary>
+    public const string S102WrongRequestContext = "ClassifierPrototypeService_Errors.S102";
     
     #endregion
 }

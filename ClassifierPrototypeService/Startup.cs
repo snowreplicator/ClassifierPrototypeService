@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using Prototype.ClassifierPrototypeService.Application;
 using Prototype.ClassifierPrototypeService.Configuration;
 using Prototype.ClassifierPrototypeService.Infrastructure;
+using Prototype.ClassifierPrototypeService.Middleware;
 
 namespace Prototype.ClassifierPrototypeService;
 
@@ -44,6 +45,8 @@ public class Startup
         }
 
         app.UseRouting();
+        
+        app.UseToBaseExceptionWrapping();
 
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
