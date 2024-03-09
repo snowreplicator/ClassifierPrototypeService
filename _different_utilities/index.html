@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta
+          name="description"
+          content="Web site created using create-react-app"
+  />
+  <title>TestRest</title>
+  <style>
+  </style>
+  <script>
+    const fetchPostData = async () => {
+      await fetch('http://localhost:5204/api/Movies/AddMovie',
+        {
+          method: 'post',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          },
+          body: JSON.stringify({
+            locale: 'ru-RU',
+            title: 'test title 111',
+            genre: 'test genre 222',
+            releaseDate: '2024-03-23T11:33:33.573'
+          }),
+        }).then(async response => {
+        console.log(response);
+      }).then().catch(error => {
+        console.log(error);
+      });
+    };
+    const fetchGetData = async () => {
+      await fetch('http://localhost:5204/api/Movies/GetMovies',
+              {
+                headers: { 'Access-Control-Allow-Origin': '*'},
+                method: 'get',
+              }).then(async response => {
+        console.log(response);
+      }).then().catch(error => {
+        console.log(error);
+      });
+    };
+  </script>
+</head>
+<body>
+<button onclick="fetchPostData()">Test POST</button>
+<button onclick="fetchGetData()">Test GET</button>
+</body>
+</html>
