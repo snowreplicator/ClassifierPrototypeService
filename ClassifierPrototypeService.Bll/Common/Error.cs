@@ -12,7 +12,12 @@ public static class Error
     /// <summary>
     /// Запись не может быть создана
     /// </summary>
-    public const string O101MovieCouldNotBeCreated = "ClassifierPrototypeService_Errors.O100";
+    public const string O101MovieCouldNotBeCreated = "ClassifierPrototypeService_Errors.O101";
+    
+    /// <summary>
+    /// Запись не может быть изменена
+    /// </summary>
+    public const string O102MovieCouldNotBeUpdated = "ClassifierPrototypeService_Errors.O102";
     
     #endregion
     

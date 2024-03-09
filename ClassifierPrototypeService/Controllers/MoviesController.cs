@@ -26,11 +26,22 @@ public class MoviesController : BaseController
     }
     
     /// <summary>
-    /// get movie by id
+    /// get movie by id (query param)
     /// </summary>
-    [HttpGet("GetMovie")]
+    [HttpGet("GetMovieQueryParam")]
     [Description("Get movie by id")]
-    public async Task<ActionResult<MovieViewModel>> GetMovieAsync(int id)
+    public async Task<ActionResult<MovieViewModel>> GetMovieQueryParamAsync(int id)
+    {
+        MovieViewModel result = await GetApplicationService<IGetMovieApplicationService>().HandleAsync(new GetMovieRequest(id));
+        return new ActionResult<MovieViewModel>(result);
+    }
+    
+    /// <summary>
+    /// get movie by id path param
+    /// </summary>
+    [HttpGet("GetMoviePathParam/{id}")]
+    [Description("Get movie by id")]
+    public async Task<ActionResult<MovieViewModel>> GetMoviePathParamAsync(int id)
     {
         MovieViewModel result = await GetApplicationService<IGetMovieApplicationService>().HandleAsync(new GetMovieRequest(id));
         return new ActionResult<MovieViewModel>(result);
@@ -44,6 +55,29 @@ public class MoviesController : BaseController
     public async Task<ActionResult<MovieViewModel>> AddMovieAsync(AddMovieRequest request)
     {
         MovieViewModel result = await GetApplicationService<IAddMovieApplicationService>().HandleAsync(request);
+        return new ActionResult<MovieViewModel>(result);
+    }
+    
+    /// <summary>
+    /// update existing movie (id in object) 
+    /// </summary>
+    [HttpPut("UpdateMovieIdInObject")]
+    [Description("update existing movie")]
+    public async Task<ActionResult<MovieViewModel>> UpdateMovieIdInObjectAsync(UpdateMovieRequest request)
+    {
+        MovieViewModel result = await GetApplicationService<IUpdateMovieApplicationService>().HandleAsync(request);
+        return new ActionResult<MovieViewModel>(result);
+    }
+    
+    /// <summary>
+    /// update existing movie (id as query) 
+    /// </summary>
+    [HttpPut("UpdateMovieIdInPath/{id}")]
+    [Description("update existing movie")]
+    public async Task<ActionResult<MovieViewModel>> UpdateMovieIdInPathAsync(int id, UpdateMovieRequest request)
+    {
+        request.Id = id;
+        MovieViewModel result = await GetApplicationService<IUpdateMovieApplicationService>().HandleAsync(request);
         return new ActionResult<MovieViewModel>(result);
     }
         

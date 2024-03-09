@@ -5,5 +5,7 @@ namespace Prototype.ClassifierPrototypeService.Application.Interfaces.Repositori
 
 public interface IMovieRepository
 {
+    Task<Movie> this[int entityId] { get; }
     Task<Movie> AddAsync(Movie movie);
+    Task<Movie> UpdateAsync(Movie movie);
 }
