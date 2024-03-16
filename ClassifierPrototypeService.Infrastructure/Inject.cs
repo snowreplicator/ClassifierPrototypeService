@@ -1,6 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Prototype.ClassifierPrototypeService.Application.Common;
 using Prototype.ClassifierPrototypeService.Application.Interfaces.QuerySources;
 using Prototype.ClassifierPrototypeService.Application.Interfaces.Repositories;
@@ -13,13 +16,13 @@ namespace Prototype.ClassifierPrototypeService.Infrastructure;
 
 public static class Inject
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
         => services
             .AddQuerySources()
-            .AddRepositories(configuration)
+            .AddRepositories(configuration, environment)
             .AddRequestContext();
 
-    private static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration)
+    private static IServiceCollection AddRepositories(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddDbContextFactory<ApplicationDbContext>(o =>
         {
@@ -30,9 +33,7 @@ public static class Inject
 
             _ = o.UseNpgsql(connectionString)
                     .UseSchema(serviceOptions.Db.Schema)
-#if DEBUG
-                    .EnableSensitiveDataLogging()
-#endif
+                    .EnableSensitiveDataLogging(environment.IsDevelopment())
                 ;
         });
         
