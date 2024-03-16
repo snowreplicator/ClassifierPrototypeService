@@ -56,11 +56,15 @@ public class Startup
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
-
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Classifier prototype rest api"));
         }
-
+        
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Classifier prototype rest api");
+            c.RoutePrefix = "swagger";
+        });
+        
         app.UseCors("ClassifierPrototypePolicy");
 
         app.UseRouting();
@@ -77,4 +81,5 @@ public class Startup
         logger.LogInformation("DbOptions: '{serviceOptions?.Db}'", serviceOptions?.Db);
         logger.LogInformation("Native locale: '{serviceOptions?.NativeLocale}'", serviceOptions?.NativeLocale);
     }
+
 }
