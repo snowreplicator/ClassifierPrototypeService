@@ -9,6 +9,9 @@ public class ServiceOptions
     
     [Required(ErrorMessage = "NativeLocale: Необходимо указать нативную локаль")]
     public string NativeLocale { get; set; }
+    
+    [Required(ErrorMessage = "UseSwaggerInProduction: использование сваггера в продакшн")]
+    public bool UseSwaggerInProduction { get; set; }
 }
 
 public record DbOptions
@@ -19,3 +22,4 @@ public record DbOptions
     [Required(ErrorMessage = "DB:Schema: Необходимо указать схему")]
     public string Schema { get; set; }
 }
+

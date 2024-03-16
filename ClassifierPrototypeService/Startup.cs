@@ -51,20 +51,23 @@ public class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
     {
-        PrintApplicationConfiguration(logger);
+        PrintApplicationConfiguration(logger, env);
         
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
         }
-        
-        app.UseSwagger();
-        app.UseSwaggerUI(c =>
+
+        if (env.IsDevelopment() || !env.IsDevelopment() && Configuration.Get<ServiceOptions>().UseSwaggerInProduction)
         {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "Classifier prototype rest api");
-            c.RoutePrefix = "swagger";
-        });
-        
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Classifier prototype rest api");
+                c.RoutePrefix = "swagger";
+            });
+        }
+
         app.UseCors("ClassifierPrototypePolicy");
 
         app.UseRouting();
@@ -74,12 +77,14 @@ public class Startup
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
     }
     
-    private void PrintApplicationConfiguration(ILogger<Startup> logger)
+    private void PrintApplicationConfiguration(ILogger<Startup> logger, IHostEnvironment env)
     {
         ServiceOptions serviceOptions = Configuration.Get<ServiceOptions>();
         logger.LogInformation("Application configuration:");
-        logger.LogInformation("DbOptions: '{serviceOptions?.Db}'", serviceOptions?.Db);
-        logger.LogInformation("Native locale: '{serviceOptions?.NativeLocale}'", serviceOptions?.NativeLocale);
+        logger.LogInformation("Environment name: {env.EnvironmentName)}", env.EnvironmentName);
+        logger.LogInformation("DbOptions: {serviceOptions?.Db}", serviceOptions?.Db);
+        logger.LogInformation("Native locale: {serviceOptions?.NativeLocale}", serviceOptions?.NativeLocale);
+        logger.LogInformation("Swagger in production: {serviceOptions?.UseSwaggerInProduction}", serviceOptions?.UseSwaggerInProduction);
     }
 
 }
