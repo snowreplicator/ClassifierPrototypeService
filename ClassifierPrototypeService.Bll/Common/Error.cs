@@ -24,6 +24,16 @@ public static class Error
     /// </summary>
     public const string O103MovieCouldNotBeDeleted = "ClassifierPrototypeService_Errors.O103";
     
+    /// <summary>
+    /// Необработанное исключения для сервиса test1 
+    /// </summary>
+    public const string O104Test1UnexpectedError = "ClassifierPrototypeService_Errors.O104";
+    
+    /// <summary>
+    /// Необработанное исключения для сервиса test2
+    /// </summary>
+    public const string O105Test2UnexpectedError = "ClassifierPrototypeService_Errors.O105";
+    
     #endregion
     
     

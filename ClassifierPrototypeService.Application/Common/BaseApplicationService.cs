@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Prototype.ClassifierPrototypeService.Application.Helpers;
+using Prototype.ClassifierPrototypeService.Bll.Common;
 
 namespace Prototype.ClassifierPrototypeService.Application.Common;
 
@@ -41,6 +42,10 @@ public abstract class BaseApplicationService<TRequest, TResponse> : WrappingToBa
 
             await _requestContext.CancelTransactionAsync();
 
+            // проброс исключенией слоя bll и application
+            if (exception is ApplicationLayerException || exception is BllLayerException)
+                throw;
+            
             throw WrapException(exception);
         }
         finally

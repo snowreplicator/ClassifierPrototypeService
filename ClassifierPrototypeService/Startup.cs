@@ -52,11 +52,6 @@ public class Startup
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
     {
         PrintApplicationConfiguration(logger, env);
-        
-        if (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
 
         if (env.IsDevelopment() || !env.IsDevelopment() && Configuration.Get<ServiceOptions>().UseSwaggerInProduction)
         {
