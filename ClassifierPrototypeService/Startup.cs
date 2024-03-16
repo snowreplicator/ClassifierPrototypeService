@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Prototype.ClassifierPrototypeService.Application;
 using Prototype.ClassifierPrototypeService.Configuration;
@@ -48,8 +49,10 @@ public class Startup
         services.AddApplication();
     }
 
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILogger<Startup> logger)
     {
+        PrintApplicationConfiguration(logger);
+        
         if (env.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -65,5 +68,13 @@ public class Startup
         app.UseToBaseExceptionWrapping();
 
         app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+    }
+    
+    private void PrintApplicationConfiguration(ILogger<Startup> logger)
+    {
+        ServiceOptions serviceOptions = Configuration.Get<ServiceOptions>();
+        logger.LogInformation("Application configuration:");
+        logger.LogInformation("DbOptions: '{serviceOptions?.Db}'", serviceOptions?.Db);
+        logger.LogInformation("Native locale: '{serviceOptions?.NativeLocale}'", serviceOptions?.NativeLocale);
     }
 }
