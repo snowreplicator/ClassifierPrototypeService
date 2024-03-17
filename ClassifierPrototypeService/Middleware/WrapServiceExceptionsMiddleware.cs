@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Net.Mime;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -74,8 +75,8 @@ public class WrapServiceExceptionsMiddleware
                 Message = message
             };
         }
-
-        context.Response.ContentType = "application/json";
+        
+        context.Response.ContentType = MediaTypeNames.Application.Json;
         context.Response.StatusCode = (int) HttpStatusCode.InternalServerError;
         return context.Response.WriteAsync(JsonConvert.SerializeObject(obj));
     }
